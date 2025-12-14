@@ -1,0 +1,104 @@
+from __future__ import annotations
+from typing import Set
+
+from x4shipqueue.config import FACTION_TOKENS
+
+
+# ----------------------------------------------------------------------
+# Helpers
+# ----------------------------------------------------------------------
+
+def extract_ship_role(ship_id: str) -> str:
+    """
+    Extract logical hull role from ships.xml id.
+
+    Examples:
+        split_fighter_heavy_s -> fighter
+        split_miner_solid_m  -> miner_solid
+        argon_carrier_xl     -> carrier
+    """
+    parts = ship_id.split("_")
+
+    # strip race prefix and size suffix
+    core = parts[1:-1]
+
+    # remove family-only adjectives to avoid duplicates
+    drop = {"light", "heavy"}
+    core = [p for p in core if p not in drop]
+
+    return "_".join(core)
+
+
+def extract_macro_role(macro_id: str) -> str:
+    """
+    Extract hull role from macro id.
+
+    Examples:
+        ship_spl_s_fighter_02_a_macro -> fighter
+        ship_spl_m_miner_solid_01_a_macro -> miner_solid
+    """
+    parts = macro_id.split("_")
+
+    # ship_<race>_<size>_<family...>_<num>_<variant>_macro
+    core = parts[3:-3]
+    return "_".join(core)
+
+
+def faction_compatible(ship_tokens: Set[str], macro_tokens: Set[str]) -> bool:
+    ship_factions = ship_tokens & FACTION_TOKENS
+    macro_factions = macro_tokens & FACTION_TOKENS
+
+    if ship_factions and macro_factions:
+        return not ship_factions.isdisjoint(macro_factions)
+
+    return True
+
+
+# ----------------------------------------------------------------------
+# Primary matcher
+# ----------------------------------------------------------------------
+
+def macro_matches_ship(
+    *,
+    ship_id: str,
+    ship_tokens: Set[str],
+    ship_size: str,
+    macro_id: str,
+    macro_tokens: Set[str],
+) -> bool:
+    """
+    Deterministic hull ↔ macro matcher.
+
+    Required to match:
+      1) faction token (if present)
+      2) size token
+      3) family tokens (derived from IDs)
+    """
+
+    # --------------------------------------------------
+    # 1) Size must match
+    # --------------------------------------------------
+    if ship_size.lower() not in macro_tokens:
+        return False
+
+    # --------------------------------------------------
+    # 2) Faction compatibility (if present)
+    # --------------------------------------------------
+    ship_factions = ship_tokens & FACTION_TOKENS
+    macro_factions = macro_tokens & FACTION_TOKENS
+
+    if ship_factions and macro_factions:
+        if ship_factions.isdisjoint(macro_factions):
+            return False
+
+    # --------------------------------------------------
+    # 3) Family match (ID-based, not role-based)
+    # --------------------------------------------------
+    ship_core = set(ship_id.split("_")[1:])
+    macro_core = set(macro_id.replace("_macro", "").split("_")[1:])
+
+    # Remove size and faction noise
+    ship_core -= FACTION_TOKENS | {"s", "m", "l", "xl"}
+    macro_core -= FACTION_TOKENS | {"s", "m", "l", "xl"}
+
+    return ship_core.issubset(macro_core)

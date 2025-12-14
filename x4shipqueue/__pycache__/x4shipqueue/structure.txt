@@ -1,0 +1,32 @@
+x4shipqueue/
+│
+├── __init__.py
+├── __main__.py
+├── config.py
+├── models.py
+│
+├── util/
+│   ├── __init__.py
+│   ├── fs.py
+│   ├── xml.py
+│   └── naming.py
+│
+├── translation/
+│   ├── __init__.py
+│   └── t_files.py
+│
+├── equipment/
+│   ├── __init__.py
+│   ├── parse.py
+│   └── extract.py
+│
+├── hulls/
+│   ├── __init__.py
+│   ├── archetypes.py
+│   ├── macros.py
+│   ├── matching.py
+│   └── extract.py
+│
+└── export/
+    ├── __init__.py
+    └── excel.py

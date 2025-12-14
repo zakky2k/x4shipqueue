@@ -23,7 +23,13 @@ What this script does
 
 Usage
 -----
-python x4_extract_to_excel.py --x4-root "D:\\Steam\\steamapps\\common\\X4 Foundations" --out x4_extract.xlsx --include-all-sheet
+python -m x4shipqueue --x4-root "D:\\Steam\\steamapps\\common\\X4 Foundations" --out x4_extract.xlsx --include-all-sheet
+
+Parameters
+-----
+--x4-root   : Folder where teh unpacked game files exist. See Notes
+--out       : Name of the output Excel file
+--include-all-sheet   : Include an addtional worksheet in the output xslx that contains the full list of all euipment types.
 
 Notes
 -----

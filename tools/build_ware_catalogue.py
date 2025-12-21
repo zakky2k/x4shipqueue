@@ -1,4 +1,4 @@
-#usage: python -m x4shipqueue.tools.build_ware_catalogue --x4-root C:\Users\zakfo\Documents\Egosoft\_unpacked --log-level INFO
+#usage: python -m x4shipqueue.tools.build_ware_catalogue --x4-root C:\Users\zakfo\Documents\Egosoft\_unpacked --log-level INFO - new
 from __future__ import annotations
 
 import argparse

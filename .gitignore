@@ -1,3 +1,73 @@
+# =============================================================================
+# X4 Ship Queue – generated data & outputs
+# =============================================================================
+
+# Generated exports (Excel, CSV, etc.)
+export/
+exports/
+output/
+outputs/
+*.xlsx
+*.xls
+*.csv
+
+# =============================================================================
+# X4 / Egosoft game files (never commit)
+# =============================================================================
+
+# Raw extracted game data
+x4/
+x4_root/
+egosoft/
+Egosoft/
+
+# XML dumps
+**/wares.xml
+**/production.xml
+**/ships.xml
+**/macros.xml
+**/libraries.xml
+
+# Unpacked CAT/DAT content
+_unpacked/
+unpacked/
+
+# Parsed / intermediate data
+data/cache/
+data/tmp/
+data/generated/
+
+# Logs
+*.log
+logs/
+
+# Local runtime artifacts
+.cache/
+.tmp/
+
+# =============================================================================
+# Windows / Dropbox noise
+# =============================================================================
+
+desktop.ini
+Thumbs.db
+*.lnk
+
+# Dropbox
+.dropbox
+.dropbox.attr
+
+# =============================================================================
+# VS Code (keep workspace config, ignore local state)
+# =============================================================================
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

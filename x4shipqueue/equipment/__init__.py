@@ -1,3 +1,0 @@
-"""
-Equipment parsing and extraction.
-"""

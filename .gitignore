@@ -3,13 +3,11 @@
 # =============================================================================
 
 # Generated exports (Excel, CSV, etc.)
-export/
-exports/
-output/
-outputs/
 *.xlsx
 *.xls
 *.csv
+*.rar
+*.zip
 
 # =============================================================================
 # X4 / Egosoft game files (never commit)

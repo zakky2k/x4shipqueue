@@ -1,0 +1,58 @@
+  "countermeasure_flares_01": {
+    "equipment": {
+		"name": "{20201,1001}",
+		"description": "{20201,1002}",
+		"group": "countermeasures",
+		"volume": 1,
+		"tags": ["countermeasure","equipment"],
+		}
+		    "price": {
+      "min": 2179,
+      "average": 2421,
+      "max": 2663
+    },
+    "productionMethods": {
+      "default": {
+        "time": 1,
+        "amount": 1,
+        "name": "{20206,101}",
+        "resources": {
+          "advancedcomposites": 1,
+          "energycells": 9
+        }
+      },
+      "xenon": {
+        "time": 1,
+        "amount": 1,
+        "name": "{20206,601}",
+        "tags": [
+          "noplayerbuild"
+        ],
+        "resources": {
+          "energycells": 15,
+          "ore": 4,
+          "silicon": 3
+        }
+      },
+      "terran": {
+        "time": 1,
+        "amount": 1,
+        "name": "{20206,901}",
+        "resources": {
+          "energycells": 90,
+          "metallicmicrolattice": 20
+        }
+      },
+      "closedloop": {
+        "time": 1,
+        "amount": 1,
+        "name": "{20206,1201}",
+        "resources": {
+          "energycells": 30,
+          "hullparts": 1
+        }
+      }
+    }
+  }
+}
+
